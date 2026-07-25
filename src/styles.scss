@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'aos/dist/aos.css';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    overflow: hidden;
+}
+
+app-root {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+  font-family: 'Waltograph';
+  src: url('/assets/fonts/Tangled.ttf') format('truetype');
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
