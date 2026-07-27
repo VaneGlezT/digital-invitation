@@ -46,14 +46,16 @@ export class InvitationComponent {
 
 
   ngAfterViewInit() {
-    AOS.init({
-      once: false
-    });
+  AOS.init({
+    once: true,
+    duration: 1000,
+    offset: 100
+  });
 
-    setTimeout(() => {
-      AOS.refreshHard();
-    }, 300);
-  }
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+}
 
   ngOnDestroy(): void {
     this.audioService.stop();
