@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AudioService } from '../services/audio.service';
 import * as AOS from 'aos';
-
+import { register } from 'swiper/element/bundle';
 @Component({
   selector: 'app-invitation',
   standalone: true,
   imports: [],
   templateUrl: './invitation.component.html',
-  styleUrl: './invitation.component.scss'
+  styleUrl: './invitation.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class InvitationComponent {
 
@@ -23,7 +24,16 @@ export class InvitationComponent {
   // Fecha del evento
   fechaEvento = new Date('2026-10-24T20:00:00');
 
-  constructor(private audioService: AudioService) { }
+  images = [
+    'girl.jpeg',
+    'girl1.jpeg',
+    'girls2.jpeg',
+    'girls3.jpeg'
+  ];
+
+  constructor(private audioService: AudioService) {
+    register();
+  }
 
 
   ngOnInit(): void {
@@ -35,14 +45,14 @@ export class InvitationComponent {
   }
 
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     AOS.init({
       once: false
     });
 
     setTimeout(() => {
-      AOS.refresh();
-    });
+      AOS.refreshHard();
+    }, 300);
   }
 
   ngOnDestroy(): void {

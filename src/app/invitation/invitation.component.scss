@@ -3,18 +3,12 @@
     font-family: 'Tangled', cursive;
 }
 
-/* Primera pantalla */
 .hero {
     display: flex;
     height: 80vh;
     position: sticky;
     top: 0;
-    z-index: 1;
-
-    @media (max-width:950px) {
-        display: block;
-        height: 80vh;
-    }
+    z-index: -1;
 }
 
 .main-img {
@@ -24,6 +18,15 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+}
+
+.title {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+p {
+    margin: 0;
 }
 
 .hero-info {
@@ -49,10 +52,13 @@
     }
 }
 
-/* Información */
-.principal-text {
+.principal-text,
+.rvsp {
     position: relative;
     z-index: 2;
+}
+
+.principal-text {
     margin-top: -60px;
     background: #8550A0;
     color: #DAAFD2;
@@ -60,20 +66,10 @@
     text-align: center;
     overflow: hidden;
 
-    .title {
-        font-size: 36px;
-        margin-bottom: 30px;
-    }
-
-    p {
-        margin: 0;
-    }
-
     .family {
         margin-top: 40px;
     }
 
-    /* Soles */
     .sol {
         position: absolute;
         opacity: .18;
@@ -95,11 +91,10 @@
 
     .sol3 {
         width: 60px;
-        top: 30px;
+        top: 0px;
         right: 60px;
     }
 
-    /* Cuenta regresiva */
     .countdown {
         width: 300px;
         height: 90px;
@@ -110,7 +105,7 @@
         justify-content: space-around;
         align-items: center;
         padding: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
     }
 
     .time-box {
@@ -134,11 +129,92 @@
         height: 90px;
         background: #ececec;
     }
-
 }
 
-/* Countdown móvil */
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background: #8550A0;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+    transition: .3s;
+
+    i {
+        font-size: 28px;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.rvsp {
+    padding: 40px 20px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff;
+
+    .rvsp-color {
+        color: #8550A0;
+    }
+}
+
+.picks {
+    background-color: #8550A0;
+    padding: 40px 20px;
+    color: #B47BD2;
+    text-align: center;
+
+    swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    swiper-slide img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+    }
+}
+
+.thanks {
+    position: relative;
+    background-color: white;
+    padding: 40px 20px 60px;
+    font-size: 30px;
+    text-align: center;
+    color: #DAAFD2;
+    overflow: hidden;
+
+    .pascal {
+        position: absolute;
+        opacity: .45;
+        filter: brightness(.8) saturate(2);
+        pointer-events: none;
+        transform: rotate(-20deg);
+        bottom: 0;
+        right: 20px;
+    }
+
+    .pascal-img {
+        width: 100px;
+        display: block;
+    }
+}
+
+
 @media(max-width:768px) {
+
     .principal-text {
 
         .countdown {
@@ -156,23 +232,14 @@
         .divider {
             height: 80px;
         }
-
     }
-
 }
 
-/* Móvil */
-@media(max-width:950px) {
-    .hero {
-        height: 80vh;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
 
-    .main-img {
-        height: 80vh;
-        min-height: 80vh;
+@media(max-width:950px) {
+
+    .hero {
+        display: block;
     }
 
     .hero-info {
@@ -180,24 +247,24 @@
         inset: 0;
         height: auto;
         background: transparent;
-        display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
         padding: 20px 0 60px;
         z-index: 2;
 
         .name {
             font-size: 55px;
             color: #fff;
-            margin: 0;
         }
 
         .date {
             font-size: 30px;
             color: #fff;
-            margin: 0;
             padding-bottom: 40px;
         }
+    }
+
+    .main-img {
+        height: 80vh;
+        min-height: 80vh;
     }
 }

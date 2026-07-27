@@ -61,8 +61,50 @@
             <img src="sol.png" class="sol sol2">
             <img src="sol.png" class="sol sol3">
         </div>
-
-
     </div>
+    <div class="rvsp">
+        <div class="rvsp-color"> <!-- data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1200" -->
+            <p class="title ">RVSP</p>
+            <p>
+                Con gran ilusión, quiero invitarte a acompañarme en uno de los días más felices de mi vida. Nada me hará
+                más feliz que celebrar este día tan especial rodeada de quienes quiero.
+            </p> &nbsp;
+            <p>
+                Agradezco la confirmación de asistencia a la celebración.
+            </p>
+            <a class="whatsapp-btn"
+                href="https://wa.me/524151130197?text=Hola%20Lu,%20me%20gustaría%20confirmar%20mi%20asistencia%20a%20tus%20XV%20años.%0AMi%20nombre%20es:"
+                target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Confirmar asistencia
+            </a>
+        </div>
+    </div>
+    <div class="picks">
+        <swiper-container loop="true" autoplay-delay="5000" autoplay-disable-on-interaction="false" space-between="10"
+            slides-per-view="2" pagination="false" navigation="false" breakpoints='{
+                "768": {
+                  "slidesPerView": 4
+                },
+                "1200": {
+                  "slidesPerView": "auto"
+                }
+              }'>
 
+            @for (image of images; track image) {
+            <swiper-slide>
+                <img [src]="image" />
+            </swiper-slide>
+            }
+
+        </swiper-container>
+    </div>
+    <div class="thanks">
+        <p>¡Muchas Gracias!</p>
+        <p>Lu <i class="fa-solid fa-crown"></i></p>
+        <div class="pascal">
+            <img src="pascal.png" class="pascal-img">
+        </div>
+        
+    </div>
 </div>
