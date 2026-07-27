@@ -31,69 +31,75 @@ export class InvitationComponent {
     'girls3.jpeg'
   ];
 
+
   constructor(
     private audioService: AudioService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+
     if (isPlatformBrowser(this.platformId)) {
       register();
     }
+
   }
 
+
   ngOnInit(): void {
+
     this.actualizarContador();
 
     if (isPlatformBrowser(this.platformId)) {
+
       this.intervalo = setInterval(() => {
         this.actualizarContador();
       }, 1000);
+
     }
-  }
-
- async ngAfterViewInit(): Promise<void> {
-
-  if (isPlatformBrowser(this.platformId)) {
-
-    const AOS = await import('aos');
-
-    AOS.default.init({
-      once: true,
-      duration: 1400,
-      offset: 50
-    });
-
-    window.addEventListener('load', () => {
-      AOS.default.refreshHard();
-    });
-
-    setTimeout(() => {
-      AOS.default.refreshHard();
-    }, 4000);
 
   }
 
-}
-ngAfterViewChecked(): void {
-  if (isPlatformBrowser(this.platformId)) {
-    import('aos').then(AOS => {
-      AOS.default.refresh();
-    });
+
+  async ngAfterViewInit(): Promise<void> {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      const AOS = await import('aos');
+
+      AOS.default.init({
+        once: true,
+        duration: 1400,
+        offset: 100
+      });
+
+
+      setTimeout(() => {
+        AOS.default.refreshHard();
+      }, 2000);
+
+    }
+
   }
-}
+
 
   ngOnDestroy(): void {
+
     if (this.intervalo) {
       clearInterval(this.intervalo);
     }
 
     this.audioService.stop();
+
   }
 
+
   actualizarContador(): void {
+
     const ahora = new Date().getTime();
     const diferencia = this.fechaEvento.getTime() - ahora;
 
+
     if (diferencia <= 0) {
+
       this.tiempo = {
         dias: 0,
         horas: 0,
@@ -101,30 +107,35 @@ ngAfterViewChecked(): void {
         segundos: 0
       };
 
-      if (this.intervalo) {
-        clearInterval(this.intervalo);
-      }
+      clearInterval(this.intervalo);
 
       return;
+
     }
+
 
     this.tiempo.dias = Math.floor(
       diferencia / (1000 * 60 * 60 * 24)
     );
+
 
     this.tiempo.horas = Math.floor(
       (diferencia % (1000 * 60 * 60 * 24)) /
       (1000 * 60 * 60)
     );
 
+
     this.tiempo.minutos = Math.floor(
       (diferencia % (1000 * 60 * 60)) /
       (1000 * 60)
     );
 
+
     this.tiempo.segundos = Math.floor(
       (diferencia % (1000 * 60)) /
       1000
     );
+
   }
+
 }

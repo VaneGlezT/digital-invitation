@@ -11,30 +11,30 @@ export class AudioService {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+
     if (isPlatformBrowser(this.platformId)) {
       this.audio = new Audio('sounds/tangled.mp3');
       this.audio.loop = true;
     }
+
   }
 
-  play() {
-    if (this.audio) {
-      this.audio.play().catch(error => {
-        console.log('Audio bloqueado:', error);
+  play(): void {
+    this.audio?.play()
+      .catch(() => {
+        console.log('Audio bloqueado por el navegador');
       });
-    }
   }
 
-  pause() {
-    if (this.audio) {
-      this.audio.pause();
-    }
+  pause(): void {
+    this.audio?.pause();
   }
 
-  stop() {
+  stop(): void {
     if (this.audio) {
       this.audio.pause();
       this.audio.currentTime = 0;
     }
   }
+
 }
