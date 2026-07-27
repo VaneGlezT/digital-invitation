@@ -1,7 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { AudioService } from '../services/audio.service';
 import * as AOS from 'aos';
 import { register } from 'swiper/element/bundle';
+
 @Component({
   selector: 'app-invitation',
   standalone: true,
@@ -21,7 +23,6 @@ export class InvitationComponent {
 
   intervalo: any;
 
-  // Fecha del evento
   fechaEvento = new Date('2026-10-24T20:00:00');
 
   images = [
@@ -31,44 +32,75 @@ export class InvitationComponent {
     'girls3.jpeg'
   ];
 
-  constructor(private audioService: AudioService) {
-    register();
+
+  constructor(
+    private audioService: AudioService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+
+    // Solo navegador
+    if (isPlatformBrowser(this.platformId)) {
+      register();
+    }
+
   }
 
 
   ngOnInit(): void {
+
     this.actualizarContador();
 
-    this.intervalo = setInterval(() => {
-      this.actualizarContador();
-    }, 1000);
+
+    // Solo navegador para no bloquear SSR
+    if (isPlatformBrowser(this.platformId)) {
+
+      this.intervalo = setInterval(() => {
+        this.actualizarContador();
+      }, 1000);
+
+    }
+
   }
 
 
-  ngAfterViewInit() {
-  AOS.init({
-    once: true,
-    duration: 1000,
-    offset: 100
-  });
+  ngAfterViewInit(): void {
 
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-}
+    if (isPlatformBrowser(this.platformId)) {
+
+      AOS.init({
+        once: true,
+        duration: 1000,
+        offset: 100
+      });
+
+
+      setTimeout(() => {
+        AOS.refresh();
+      }, 1000);
+
+    }
+
+  }
+
 
   ngOnDestroy(): void {
+
+    if (this.intervalo) {
+      clearInterval(this.intervalo);
+    }
+
     this.audioService.stop();
-    clearInterval(this.intervalo);
+
   }
 
-  actualizarContador() {
+
+  actualizarContador(): void {
 
     const ahora = new Date().getTime();
     const diferencia = this.fechaEvento.getTime() - ahora;
 
+
     if (diferencia <= 0) {
-      clearInterval(this.intervalo);
 
       this.tiempo = {
         dias: 0,
@@ -77,25 +109,37 @@ export class InvitationComponent {
         segundos: 0
       };
 
+      if (this.intervalo) {
+        clearInterval(this.intervalo);
+      }
+
       return;
+
     }
 
-    this.tiempo.dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+    this.tiempo.dias = Math.floor(
+      diferencia / (1000 * 60 * 60 * 24)
+    );
+
 
     this.tiempo.horas = Math.floor(
       (diferencia % (1000 * 60 * 60 * 24)) /
       (1000 * 60 * 60)
     );
 
+
     this.tiempo.minutos = Math.floor(
       (diferencia % (1000 * 60 * 60)) /
       (1000 * 60)
     );
 
+
     this.tiempo.segundos = Math.floor(
       (diferencia % (1000 * 60)) /
       1000
     );
+
   }
 
 }

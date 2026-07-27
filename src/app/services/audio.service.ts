@@ -1,26 +1,40 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AudioService {
 
-  audio = new Audio('sounds/tangled.mp3');
+  private audio?: HTMLAudioElement;
 
-  constructor() {
-    this.audio.loop = true;
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.audio = new Audio('sounds/tangled.mp3');
+      this.audio.loop = true;
+    }
   }
 
   play() {
-    this.audio.play();
+    if (this.audio) {
+      this.audio.play().catch(error => {
+        console.log('Audio bloqueado:', error);
+      });
+    }
   }
 
   pause() {
-    this.audio.pause();
+    if (this.audio) {
+      this.audio.pause();
+    }
   }
 
   stop() {
-    this.audio.pause();
-    this.audio.currentTime = 0;
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
   }
 }
