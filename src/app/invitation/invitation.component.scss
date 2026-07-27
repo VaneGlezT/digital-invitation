@@ -8,7 +8,7 @@
     height: 80vh;
     position: sticky;
     top: 0;
-    z-index: -1;
+    z-index: 0;
 }
 
 .main-img {
@@ -166,7 +166,10 @@ p {
     }
 }
 
+
 .picks {
+      position: relative;
+    z-index: 3;
     background-color: #8550A0;
     padding: 40px 20px;
     color: #B47BD2;
