@@ -10,17 +10,18 @@
     position: relative;
     overflow: hidden;
 
-   .decorations {
-    position: absolute;
-    inset: 0; /* top:0 right:0 bottom:0 left:0 */
-    pointer-events: none;
-}
+    .decorations {
+        position: absolute;
+        inset: 0;
+        /* top:0 right:0 bottom:0 left:0 */
+        pointer-events: none;
+    }
 
-.decorations img {
-    position: absolute;
-    opacity: .3;
-    filter: brightness(.6) saturate(1.8);
-}
+    .decorations img {
+        position: absolute;
+        opacity: .3;
+        filter: brightness(.6) saturate(1.8);
+    }
 
 
     /* SOL - esquina superior derecha */
@@ -28,6 +29,7 @@
         width: 180px;
         top: -20px;
         right: -20px;
+
         @media (max-width: 950px) {
             width: 150px;
             right: 0;
@@ -39,6 +41,7 @@
         width: 90px;
         top: 120px;
         right: 150px;
+
         @media (max-width: 950px) {
             right: 0px;
             width: 60px;
@@ -61,10 +64,11 @@
         width: 180px;
         bottom: -20px;
         left: -20px;
+
         @media (max-width: 950px) {
-             width: 150px;
-             left: 0px;
-             bottom: 0;
+            width: 150px;
+            left: 0px;
+            bottom: 0;
         }
     }
 
@@ -72,6 +76,7 @@
         width: 90px;
         bottom: 120px;
         left: 150px;
+
         @media (max-width: 950px) {
             left: 10px;
         }
@@ -81,6 +86,7 @@
         width: 60px;
         bottom: 40px;
         left: 300px;
+
         @media (max-width: 950px) {
             left: 160px;
             bottom: 20px;

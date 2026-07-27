@@ -1,0 +1,202 @@
+.invitation {
+    width: 100%;
+    font-family: 'Tangled', cursive;
+}
+
+/* Primera pantalla */
+.hero {
+    display: flex;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    @media (max-width:950px) {
+        display: block;
+        height: 80vh;
+    }
+}
+
+.main-img {
+    flex: 1;
+    height: 100vh;
+    background-image: url('/example.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.hero-info {
+    flex: 1;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .name {
+        font-size: 70px;
+        color: #8550A0;
+        margin: 0;
+    }
+
+    .date {
+        font-size: 35px;
+        color: #8550A0;
+        margin-top: 20px;
+    }
+}
+
+/* Información */
+.principal-text {
+    position: relative;
+    z-index: 2;
+    margin-top: -60px;
+    background: #8550A0;
+    color: #DAAFD2;
+    padding: 40px 20px;
+    text-align: center;
+    overflow: hidden;
+
+    .title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .family {
+        margin-top: 40px;
+    }
+
+    /* Soles */
+    .sol {
+        position: absolute;
+        opacity: .18;
+        filter: brightness(.6) saturate(1.8);
+        pointer-events: none;
+    }
+
+    .sol1 {
+        width: 140px;
+        bottom: 0;
+        right: -30px;
+    }
+
+    .sol2 {
+        width: 90px;
+        bottom: 50px;
+        left: 20px;
+    }
+
+    .sol3 {
+        width: 60px;
+        top: 30px;
+        right: 60px;
+    }
+
+    /* Cuenta regresiva */
+    .countdown {
+        width: 300px;
+        height: 90px;
+        margin: 30px auto 0;
+        background: #fff;
+        border-radius: 25px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+    }
+
+    .time-box {
+        flex: 1;
+        text-align: center;
+    }
+
+    .number {
+        font-size: 30px;
+        color: #8550A0;
+        font-weight: 600;
+    }
+
+    .label {
+        color: #B47BD2;
+        font-size: 20px;
+    }
+
+    .divider {
+        width: 2px;
+        height: 90px;
+        background: #ececec;
+    }
+
+}
+
+/* Countdown móvil */
+@media(max-width:768px) {
+    .principal-text {
+
+        .countdown {
+            padding: 10px;
+        }
+
+        .number {
+            font-size: 36px;
+        }
+
+        .label {
+            font-size: 18px;
+        }
+
+        .divider {
+            height: 80px;
+        }
+
+    }
+
+}
+
+/* Móvil */
+@media(max-width:950px) {
+    .hero {
+        height: 80vh;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .main-img {
+        height: 80vh;
+        min-height: 80vh;
+    }
+
+    .hero-info {
+        position: absolute;
+        inset: 0;
+        height: auto;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0 60px;
+        z-index: 2;
+
+        .name {
+            font-size: 55px;
+            color: #fff;
+            margin: 0;
+        }
+
+        .date {
+            font-size: 30px;
+            color: #fff;
+            margin: 0;
+        }
+    }
+}
