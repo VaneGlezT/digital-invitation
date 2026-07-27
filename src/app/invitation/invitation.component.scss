@@ -4,7 +4,7 @@
 }
 
 .hero {
-      display: flex;
+    display: flex;
     height: 80vh;
     position: relative;
     z-index: 0;
@@ -183,10 +183,14 @@ p {
 
     swiper-slide img {
         width: 100%;
-        height: 250px;
+        height: 500px;
         object-fit: cover;
         border-radius: 12px;
         display: block;
+
+        @media(max-width:950px) {
+            height: 250px;
+        }
     }
 }
 
@@ -216,7 +220,7 @@ p {
 }
 
 
-@media(max-width:768px) {
+@media(max-width:950px) {
 
     .principal-text {
 
