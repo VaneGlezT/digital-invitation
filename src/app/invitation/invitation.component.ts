@@ -1,7 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { AudioService } from '../services/audio.service';
-import * as AOS from 'aos';
 import { register } from 'swiper/element/bundle';
 
 @Component({
@@ -32,76 +31,69 @@ export class InvitationComponent {
     'girls3.jpeg'
   ];
 
-
   constructor(
     private audioService: AudioService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-
-    // Solo navegador
     if (isPlatformBrowser(this.platformId)) {
       register();
     }
-
   }
 
-
   ngOnInit(): void {
-
     this.actualizarContador();
 
-
-    // Solo navegador para no bloquear SSR
     if (isPlatformBrowser(this.platformId)) {
-
       this.intervalo = setInterval(() => {
         this.actualizarContador();
       }, 1000);
-
     }
+  }
+
+ async ngAfterViewInit(): Promise<void> {
+
+  if (isPlatformBrowser(this.platformId)) {
+
+    const AOS = await import('aos');
+
+    AOS.default.init({
+      once: true,
+      duration: 1400,
+      offset: 50
+    });
+
+    window.addEventListener('load', () => {
+      AOS.default.refreshHard();
+    });
+
+    setTimeout(() => {
+      AOS.default.refreshHard();
+    }, 4000);
 
   }
 
-
-  ngAfterViewInit(): void {
-
-    if (isPlatformBrowser(this.platformId)) {
-
-      AOS.init({
-        once: true,
-        duration: 1000,
-        offset: 100
-      });
-
-
-      setTimeout(() => {
-        AOS.refresh();
-      }, 1000);
-
-    }
-
+}
+ngAfterViewChecked(): void {
+  if (isPlatformBrowser(this.platformId)) {
+    import('aos').then(AOS => {
+      AOS.default.refresh();
+    });
   }
-
+}
 
   ngOnDestroy(): void {
-
     if (this.intervalo) {
       clearInterval(this.intervalo);
     }
 
     this.audioService.stop();
-
   }
 
-
   actualizarContador(): void {
-
     const ahora = new Date().getTime();
     const diferencia = this.fechaEvento.getTime() - ahora;
 
-
     if (diferencia <= 0) {
-
       this.tiempo = {
         dias: 0,
         horas: 0,
@@ -114,32 +106,25 @@ export class InvitationComponent {
       }
 
       return;
-
     }
-
 
     this.tiempo.dias = Math.floor(
       diferencia / (1000 * 60 * 60 * 24)
     );
-
 
     this.tiempo.horas = Math.floor(
       (diferencia % (1000 * 60 * 60 * 24)) /
       (1000 * 60 * 60)
     );
 
-
     this.tiempo.minutos = Math.floor(
       (diferencia % (1000 * 60 * 60)) /
       (1000 * 60)
     );
 
-
     this.tiempo.segundos = Math.floor(
       (diferencia % (1000 * 60)) /
       1000
     );
-
   }
-
 }

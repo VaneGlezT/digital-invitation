@@ -4,10 +4,9 @@
 }
 
 .hero {
-    display: flex;
+      display: flex;
     height: 80vh;
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 0;
 }
 
@@ -156,10 +155,11 @@ p {
 }
 
 .rvsp {
+    position: relative;
     padding: 40px 20px;
     text-align: center;
-    overflow: hidden;
     background-color: #fff;
+    z-index: 2;
 
     .rvsp-color {
         color: #8550A0;
