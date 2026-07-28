@@ -6,7 +6,8 @@
 .hero {
     display: flex;
     height: 80vh;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 0;
 }
 
@@ -44,11 +45,11 @@ p {
         margin: 0;
     }
 
-    .date {
+  /*   .date {
         font-size: 35px;
         color: #8550A0;
         margin-top: 20px;
-    }
+    } */
 }
 
 .principal-text,
@@ -94,7 +95,7 @@ p {
         right: 60px;
     }
 
-   /*  .countdown {
+    /*  .countdown {
         width: 300px;
         height: 90px;
         margin: 30px auto 0;
@@ -196,7 +197,7 @@ p {
  */
 .thanks {
     position: relative;
-    background-color: white;
+    background-color: rgba(133, 80, 160, 0.9);
     padding: 40px 20px 60px;
     font-size: 30px;
     text-align: center;
@@ -205,12 +206,12 @@ p {
 
     .pascal {
         position: absolute;
-        opacity: .45;
-        filter: brightness(.8) saturate(2);
+        opacity: .2;
         pointer-events: none;
         transform: rotate(-20deg);
         bottom: 0;
         right: 20px;
+        filter: brightness(.6) saturate(1.8);
     }
 
     .pascal-img {

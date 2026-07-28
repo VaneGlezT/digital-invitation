@@ -13,7 +13,7 @@ import { register } from 'swiper/element/bundle';
 })
 export class InvitationComponent {
 
-  tiempo = {
+  /* tiempo = {
     dias: 0,
     horas: 0,
     minutos: 0,
@@ -21,7 +21,7 @@ export class InvitationComponent {
   };
 
   intervalo: any;
-  fechaEvento = new Date('2026-10-24T20:00:00');
+  fechaEvento = new Date('2026-10-24T20:00:00'); */
 
   images = [
     'girl.jpeg',
@@ -40,13 +40,13 @@ export class InvitationComponent {
   }
 
   ngOnInit(): void {
-    this.actualizarContador();
+   /*  this.actualizarContador(); */
 
-    if (isPlatformBrowser(this.platformId)) {
+ /*    if (isPlatformBrowser(this.platformId)) {
       this.intervalo = setInterval(() => {
         this.actualizarContador();
       }, 1000);
-    }
+    } */
   }
 
   async ngAfterViewInit(): Promise<void> {
@@ -79,14 +79,14 @@ export class InvitationComponent {
   }
 
   ngOnDestroy(): void {
-    if (this.intervalo) {
+   /*  if (this.intervalo) {
       clearInterval(this.intervalo);
-    }
+    } */
 
     this.audioService.stop();
   }
 
-  actualizarContador(): void {
+/*   actualizarContador(): void {
     const ahora = new Date().getTime();
     const diferencia = this.fechaEvento.getTime() - ahora;
 
@@ -118,5 +118,5 @@ export class InvitationComponent {
       (diferencia % (1000 * 60)) /
       1000
     );
-  }
+  } */
 }

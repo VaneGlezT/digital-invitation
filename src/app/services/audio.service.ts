@@ -13,7 +13,7 @@ export class AudioService {
   ) {
 
     if (isPlatformBrowser(this.platformId)) {
-      this.audio = new Audio('sounds/tangled.mp3');
+      this.audio = new Audio('sounds/lover.mp3');
       this.audio.loop = true;
     }
 
