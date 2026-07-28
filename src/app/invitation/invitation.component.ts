@@ -60,8 +60,9 @@ export class InvitationComponent {
     }
   }
 
+  @HostListener('window:pagehide')
   @HostListener('window:beforeunload')
-  ngOnLeavePage(): void {
+  stopAudio(): void {
     this.audioService.stop();
   }
 
