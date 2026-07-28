@@ -19,8 +19,10 @@ export class InvitationComponent {
     minutos: 0,
     segundos: 0
   };
+
   intervalo: any;
   fechaEvento = new Date('2026-10-24T20:00:00');
+
   images = [
     'girl.jpeg',
     'girl1.jpeg',
@@ -39,6 +41,7 @@ export class InvitationComponent {
 
   ngOnInit(): void {
     this.actualizarContador();
+
     if (isPlatformBrowser(this.platformId)) {
       this.intervalo = setInterval(() => {
         this.actualizarContador();
@@ -49,14 +52,23 @@ export class InvitationComponent {
   async ngAfterViewInit(): Promise<void> {
     if (isPlatformBrowser(this.platformId)) {
       const AOS = await import('aos');
+
       AOS.default.init({
         once: true,
         duration: 1400,
         offset: 100
       });
+
       setTimeout(() => {
         AOS.default.refreshHard();
       }, 2000);
+    }
+  }
+
+  @HostListener('document:visibilitychange')
+  onVisibilityChange(): void {
+    if (document.hidden) {
+      this.audioService.pause();
     }
   }
 
@@ -70,12 +82,14 @@ export class InvitationComponent {
     if (this.intervalo) {
       clearInterval(this.intervalo);
     }
+
     this.audioService.stop();
   }
 
   actualizarContador(): void {
     const ahora = new Date().getTime();
     const diferencia = this.fechaEvento.getTime() - ahora;
+
     if (diferencia <= 0) {
       this.tiempo = {
         dias: 0,
@@ -83,20 +97,23 @@ export class InvitationComponent {
         minutos: 0,
         segundos: 0
       };
+
       clearInterval(this.intervalo);
       return;
     }
-    this.tiempo.dias = Math.floor(
-      diferencia / (1000 * 60 * 60 * 24)
-    );
+
+    this.tiempo.dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
     this.tiempo.horas = Math.floor(
       (diferencia % (1000 * 60 * 60 * 24)) /
       (1000 * 60 * 60)
     );
+
     this.tiempo.minutos = Math.floor(
       (diferencia % (1000 * 60 * 60)) /
       (1000 * 60)
     );
+
     this.tiempo.segundos = Math.floor(
       (diferencia % (1000 * 60)) /
       1000
