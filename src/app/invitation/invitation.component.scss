@@ -13,7 +13,7 @@
 .main-img {
     flex: 1;
     height: 80vh;
-    background-image: url('/example.png');
+    background-image: url('/lu.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -94,7 +94,7 @@ p {
         right: 60px;
     }
 
-    .countdown {
+   /*  .countdown {
         width: 300px;
         height: 90px;
         margin: 30px auto 0;
@@ -127,7 +127,7 @@ p {
         width: 2px;
         height: 90px;
         background: #ececec;
-    }
+    } */
 }
 
 .whatsapp-btn {
@@ -167,7 +167,7 @@ p {
 }
 
 
-.picks {
+/* .picks {
     position: relative;
     z-index: 3;
     background-color: rgba(133, 80, 160, 0.9);
@@ -193,7 +193,7 @@ p {
         }
     }
 }
-
+ */
 .thanks {
     position: relative;
     background-color: white;
