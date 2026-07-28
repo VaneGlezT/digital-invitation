@@ -40,20 +40,18 @@ export class HomeComponent {
   }
 
   openInvitation(): void {
-    // sonido del botón
+    sessionStorage.setItem('invitationEntered', 'true');
     if (this.sparkle) {
       this.sparkle.play()
         .catch(() => {
-          console.log('Safari bloqueó el sonido');
+          console.log('El navegador bloqueó el sonido.');
         });
     }
 
     setTimeout(() => {
       this.audioService.play();
     }, 1000);
-    // entrar a la invitación
     this.router.navigate(['/invitation']);
-
   }
 
 }

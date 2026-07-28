@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener, Inject, PLATFORM_ID } 
 import { isPlatformBrowser } from '@angular/common';
 import { AudioService } from '../services/audio.service';
 import { register } from 'swiper/element/bundle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invitation',
@@ -31,6 +32,7 @@ export class InvitationComponent {
   ];
 
   constructor(
+    private router: Router,
     private audioService: AudioService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
@@ -40,14 +42,28 @@ export class InvitationComponent {
   }
 
   ngOnInit(): void {
-    this.actualizarContador();
 
-    if (isPlatformBrowser(this.platformId)) {
-      this.intervalo = setInterval(() => {
-        this.actualizarContador();
-      }, 1000);
+  if (isPlatformBrowser(this.platformId)) {
+
+    const entered = sessionStorage.getItem('invitationEntered');
+
+    if (!entered) {
+      this.router.navigate(['/']);
+      return;
     }
+
+    sessionStorage.removeItem('invitationEntered');
+
   }
+
+  this.actualizarContador();
+
+  if (isPlatformBrowser(this.platformId)) {
+    this.intervalo = setInterval(() => {
+      this.actualizarContador();
+    }, 1000);
+  }
+}
 
   async ngAfterViewInit(): Promise<void> {
     if (isPlatformBrowser(this.platformId)) {
