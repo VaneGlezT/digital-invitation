@@ -40,7 +40,9 @@ export class HomeComponent {
   }
 
   openInvitation(): void {
+
     sessionStorage.setItem('invitationEntered', 'true');
+
     if (this.sparkle) {
       this.sparkle.play()
         .catch(() => {
@@ -51,6 +53,7 @@ export class HomeComponent {
     setTimeout(() => {
       this.audioService.play();
     }, 1000);
+
     this.router.navigate(['/invitation']);
   }
 
