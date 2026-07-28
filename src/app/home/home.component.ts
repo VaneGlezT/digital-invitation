@@ -19,23 +19,15 @@ export class HomeComponent {
     private audioService: AudioService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-
     if (isPlatformBrowser(this.platformId)) {
-
       this.sparkle = new Audio('sounds/sparkles.mp3');
       this.sparkle.volume = 0.5;
-
     }
-
   }
 
-
   async ngAfterViewInit(): Promise<void> {
-
     if (isPlatformBrowser(this.platformId)) {
-
       const AOS = await import('aos');
-
       AOS.default.init({
         once: false,
         duration: 1000
@@ -44,27 +36,21 @@ export class HomeComponent {
       setTimeout(() => {
         AOS.default.refresh();
       }, 500);
-
     }
-
   }
 
-
   openInvitation(): void {
-
     // sonido del botón
     if (this.sparkle) {
-
       this.sparkle.play()
         .catch(() => {
           console.log('Safari bloqueó el sonido');
         });
-
     }
 
-    // quitar timeout para iPhone
-    this.audioService.play();
-
+    setTimeout(() => {
+      this.audioService.play();
+    }, 1000);
     // entrar a la invitación
     this.router.navigate(['/invitation']);
 
