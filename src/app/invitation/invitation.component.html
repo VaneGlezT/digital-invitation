@@ -3,7 +3,7 @@
         <div class="main-img"></div>
         <div class="hero-info">
             <p data-aos="zoom-out" data-aos-duration="1400" class="name">LUDWIKA</p>
-             <p data-aos="zoom-out" data-aos-duration="1400" class="date">24.10.2026</p>
+            <p data-aos="zoom-out" data-aos-duration="1400" class="date">24.10.2026</p>
         </div>
     </div>
     <div class="principal-text">
@@ -78,12 +78,10 @@
                 </p>
             </div>
             <div data-aos="fade-up" data-aos-duration="1400" data-aos-delay="500">
-                <a class="whatsapp-btn"
-                    href="https://wa.me/524151673223?text=Hola%20Lu,%20me%20gustaría%20confirmar%20mi%20asistencia%20a%20tus%20XV%20años.%0AMi%20nombre%20es:"
-                    target="_blank">
+                <button type="button" class="btn btn-whatsapp" data-bs-toggle="modal" data-bs-target="#rsvpModal">
                     <i class="fab fa-whatsapp"></i>
                     Confirmar asistencia
-                </a>
+                </button>
             </div>
 
 
@@ -117,6 +115,34 @@
 
         <div data-aos="fade-up" data-aos-duration="1400" class="pascal">
             <img src="pascal.png" class="pascal-img">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="rsvpModal" tabindex="-1" aria-labelledby="rsvpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-rsvp">
+            <p class="modal-title">¿Con quién deseas confirmar?</p>
+            <div class="modal-body">
+                <div class="options">
+                    <button type="button" class="btn modal-option option1" (click)="openWhatsApp('524151673223')">
+                        <i class="fab fa-whatsapp"></i>
+                        Jimena
+                    </button>
+
+                    <button type="button" class="btn modal-option option2" (click)="openWhatsApp('524151569382')">
+                        <i class="fab fa-whatsapp"></i>
+                        Efraín
+                    </button>
+                </div>
+
+
+                <div class="modal-separator"></div>
+
+                <button type="button" class="btn btn-close-modal" data-bs-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
         </div>
     </div>
 </div>

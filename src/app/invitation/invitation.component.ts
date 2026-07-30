@@ -22,7 +22,7 @@ export class InvitationComponent {
 
   intervalo: any;
   fechaEvento = new Date('2026-10-24T20:00:00'); */
-
+  mostrarOpciones = false;
   images = [
     'girl.jpeg',
     'girl1.jpeg',
@@ -40,13 +40,13 @@ export class InvitationComponent {
   }
 
   ngOnInit(): void {
-   /*  this.actualizarContador(); */
+    /*  this.actualizarContador(); */
 
- /*    if (isPlatformBrowser(this.platformId)) {
-      this.intervalo = setInterval(() => {
-        this.actualizarContador();
-      }, 1000);
-    } */
+    /*    if (isPlatformBrowser(this.platformId)) {
+         this.intervalo = setInterval(() => {
+           this.actualizarContador();
+         }, 1000);
+       } */
   }
 
   async ngAfterViewInit(): Promise<void> {
@@ -79,44 +79,55 @@ export class InvitationComponent {
   }
 
   ngOnDestroy(): void {
-   /*  if (this.intervalo) {
-      clearInterval(this.intervalo);
-    } */
+    /*  if (this.intervalo) {
+       clearInterval(this.intervalo);
+     } */
 
     this.audioService.stop();
   }
 
-/*   actualizarContador(): void {
-    const ahora = new Date().getTime();
-    const diferencia = this.fechaEvento.getTime() - ahora;
+  openWhatsApp(phone: string): void {
+  const message = 'Hola Lu, me gustaría confirmar mi asistencia a tus XV años.\nMi nombre es:';
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-    if (diferencia <= 0) {
-      this.tiempo = {
-        dias: 0,
-        horas: 0,
-        minutos: 0,
-        segundos: 0
-      };
+  window.open(url, '_blank');
+}
 
-      clearInterval(this.intervalo);
-      return;
-    }
+  cerrarModal(): void {
+    this.mostrarOpciones = false;
+  }
 
-    this.tiempo.dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-
-    this.tiempo.horas = Math.floor(
-      (diferencia % (1000 * 60 * 60 * 24)) /
-      (1000 * 60 * 60)
-    );
-
-    this.tiempo.minutos = Math.floor(
-      (diferencia % (1000 * 60 * 60)) /
-      (1000 * 60)
-    );
-
-    this.tiempo.segundos = Math.floor(
-      (diferencia % (1000 * 60)) /
-      1000
-    );
-  } */
+  /*   actualizarContador(): void {
+      const ahora = new Date().getTime();
+      const diferencia = this.fechaEvento.getTime() - ahora;
+  
+      if (diferencia <= 0) {
+        this.tiempo = {
+          dias: 0,
+          horas: 0,
+          minutos: 0,
+          segundos: 0
+        };
+  
+        clearInterval(this.intervalo);
+        return;
+      }
+  
+      this.tiempo.dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+  
+      this.tiempo.horas = Math.floor(
+        (diferencia % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+      );
+  
+      this.tiempo.minutos = Math.floor(
+        (diferencia % (1000 * 60 * 60)) /
+        (1000 * 60)
+      );
+  
+      this.tiempo.segundos = Math.floor(
+        (diferencia % (1000 * 60)) /
+        1000
+      );
+    } */
 }
