@@ -88,8 +88,7 @@ export class InvitationComponent {
 
   openWhatsApp(phone: string, nombre: string): void {
     const message =
-      `Hola, ${nombre}. Me gustaría confirmar mi asistencia a los XV años de Lu.
-      Mi nombre es:`;
+      `Hola, ${nombre}. Me gustaría confirmar mi asistencia a los XV años de Lu. Mi nombre es:`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   }
