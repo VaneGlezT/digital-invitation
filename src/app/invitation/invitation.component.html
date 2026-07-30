@@ -123,19 +123,21 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-rsvp">
             <p class="modal-title">¿Con quién deseas confirmar?</p>
+
             <div class="modal-body">
                 <div class="options">
-                    <button type="button" class="btn modal-option option1" (click)="openWhatsApp('524151673223')">
+                    <button type="button" class="btn modal-option option1" data-bs-dismiss="modal"
+                        (click)="openWhatsApp('524151673223', 'Jimena')">
                         <i class="fab fa-whatsapp"></i>
                         Jimena
                     </button>
 
-                    <button type="button" class="btn modal-option option2" (click)="openWhatsApp('524151569382')">
+                    <button type="button" class="btn modal-option option2" data-bs-dismiss="modal"
+                        (click)="openWhatsApp('524151569382', 'Efraín')">
                         <i class="fab fa-whatsapp"></i>
                         Efraín
                     </button>
                 </div>
-
 
                 <div class="modal-separator"></div>
 

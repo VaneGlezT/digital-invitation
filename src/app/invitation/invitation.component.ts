@@ -86,12 +86,13 @@ export class InvitationComponent {
     this.audioService.stop();
   }
 
-  openWhatsApp(phone: string): void {
-  const message = 'Hola Lu, me gustaría confirmar mi asistencia a tus XV años.\nMi nombre es:';
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  window.open(url, '_blank');
-}
+  openWhatsApp(phone: string, nombre: string): void {
+    const message =
+      `Hola, ${nombre}. Me gustaría confirmar mi asistencia a los XV años de Lu.
+        Mi nombre es:`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
 
   cerrarModal(): void {
     this.mostrarOpciones = false;
